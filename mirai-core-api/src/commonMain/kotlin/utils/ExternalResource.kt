@@ -72,7 +72,7 @@ import kotlin.contracts.contract
 public interface ExternalResource : Closeable {
 
     /**
-     * 在 _使用一次_ 后自动 [close].
+     * 是否在 _使用一次_ 后自动 [close].
      *
      * 该属性仅供调用方参考. 如 [Contact.uploadImage] 会在方法结束时关闭 [isAutoClose] 为 `true`, 无论上传图片是否成功.
      *
@@ -507,7 +507,7 @@ public interface ExternalResource : Closeable {
 }
 
 /**
- * 执行 [action], 如果 [toAutoCloseable], 在执行完成后调用 [ExternalResource.close].
+ * 执行 [action], 如果 [isAutoClose], 在执行完成后调用 [ExternalResource.close].
  *
  * @since 2.8
  */
@@ -523,7 +523,7 @@ public inline fun <T : ExternalResource, R> T.withAutoClose(action: () -> R): R 
 }
 
 /**
- * 执行 [action], 如果 [toAutoCloseable], 在执行完成后调用 [ExternalResource.close].
+ * 执行 [action], 如果 [isAutoClose], 在执行完成后调用 [ExternalResource.close].
  *
  * @since 2.8
  */
@@ -534,7 +534,7 @@ public inline fun <T : ExternalResource, R> T.runAutoClose(action: T.() -> R): R
 }
 
 /**
- * 执行 [action], 如果 [toAutoCloseable], 在执行完成后调用 [ExternalResource.close].
+ * 执行 [action], 如果 [isAutoClose], 在执行完成后调用 [ExternalResource.close].
  *
  * @since 2.8
  */
